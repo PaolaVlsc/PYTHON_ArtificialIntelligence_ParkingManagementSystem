@@ -23,7 +23,7 @@ There are three different versions of the solution provided.
 - [Usage](#usage)
 - [Methods](#methods)
 - [Contributors](#contributors)
-- [License](#license)
+- [Extras](#extras)
 
 ## Prerequisites
 - Python (3.x recommended)
@@ -54,3 +54,5 @@ This project was created by:
 - Velasco Paola
 - Micha Evagelia 
 
+## Extras
+* Report paper in greek: [Report paper] (https://github.com/PaolaVlsc/PYTHON_ArtificialIntelligence_ParkingProblem/blob/master/extra/Final_Parking_cs161020_cs171102.pdf)
