@@ -1,9 +1,10 @@
-""" ----------------------------------------------------------------------------
+""" -------------------- Extended_ParkingNineSpaces.py     --------------------------
 ******** Search Code for DFS  and other search methods
 ******** (expanding front only)
-******** author:  Velasco Paola and Micha Evagelia
-********
-******** University of West Attica
+******** Authors:
+********            Velasco Paola
+********            Micha Evagelia
+******** University of West Attica 2020
 ******** Informatics Computer Engineering
 ********
 """

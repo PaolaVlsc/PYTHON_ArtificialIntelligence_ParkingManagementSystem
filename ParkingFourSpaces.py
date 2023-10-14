@@ -1,13 +1,13 @@
-""" ----------------------------------------------------------------------------
+""" -------------------- ParkingFourSpaces.py     --------------------------
 ******** Search Code for DFS  and other search methods
 ******** (expanding front only)
-******** author:  Velasco Paola and Micha Evagelia
-********
-******** University of West Attica
+******** Authors:
+********            Velasco Paola
+********            Micha Evagelia
+******** University of West Attica 2020
 ******** Informatics Computer Engineering
 ********
 """
-
 
 import copy
 
@@ -23,9 +23,7 @@ sys.setrecursionlimit(10 ** 6)
 # **** Διάγραμμα των Χώρων του Πάρκινγκ
 #
 #   +-------+-------+
-#   |   5   |   4   |
-#   +-------+-------+
-#   |   6   |   3   |
+#   |   4   |   3   |
 #   +-------+-------+
 #   |   1   |   2   |
 #   +-------+-------+
@@ -33,39 +31,35 @@ sys.setrecursionlimit(10 ** 6)
 #    entrance
 
 spaces = {
-    1: [2, 6],
+    1: [2, 4],
     2: [1, 3],
-    3: [2, 4, 6],
-    4: [3, 5],
-    5: [4, 6],
-    6: [1, 3, 5]
+    3: [2, 4],
+    4: [1, 3],
 }
 
 # **** The Parking Initial State Diagram
-# **** The Parking Initial State Diagram
 # **** Διάγραμμα Αρχικής Κατάστασης του Πάρκινγκ
+#
 #   +--------+--------+
-#   |  P4 NO |  P3 NO |
-#   +--------+--------+
-#   |  P5 NO |  P2 NO |
+#   |  P3 NO |  P2 NO |
 #   +--------+--------+
 #   |   E    |  P1 NO |
 #   +--------+--------+
 #       ^
-#   5 vehicles waiting
+#   3 vehicles waiting
+
 
 # **** The problem's initial state
 # **** Αρχική Κατάσταση Προβλήματος
 #
-# 1ο στοιχείο : πλήθος αυτοκινήτων εκτος parking
-# 2ο στοιχείο : χώρος 1 (που ειναι και ο χώρος εισόδου)
-# 3ο στοιχείο : χώρος 2
-# 4ο στοιχείο : χώρος 3
-# 5ο στοιχείο : χώρος 4
-# 6ο στοιχείο : χώρος 5
-# 7ο στοιχείο : χώρος 6
+# 1st element: number of vehicles outside parking
+# 2nd element: space 1 (which is also the entrance space)
+# 3rd element: space 2
+# 4th element: space 3
+# 5th element: space 4
 
-# state = [1, ['E', 'NO'], ['P1', 'NO'], ['P2', 'NO'], ['P3', 'NO'], ['P4','NO'],['P5','NO']]
+
+# state= [3, ['E', 'NO'], ['P1', 'NO'], ['P2', 'NO'], ['P3', 'NO']]
 
 
 # ******** Operators
@@ -74,6 +68,7 @@ spaces = {
 '''
  **** Τελεστής IN:
  **** Είσοδος αυτοκινήτου και τοποθέτηση σε άδεια πλατφόρμα στο χώρο εισόδου (1)
+ # Car entrance and placement in an empty platform in the entrance space (1)
 '''
 
 
@@ -87,6 +82,7 @@ def enter(state):
 '''
  **** Βοηθητικη συναρτηση swap: 
  **** Αντιμεταθέτει μέσα σε μια λιστα state τα δυο στoιχεία της που βρίσκονται στις θέσεις i & j
+ #### Swaps two elements in a list state at positions i and j
 '''
 
 
@@ -99,6 +95,9 @@ def swap(state_l, i, j):
  **** Τελεστής neighbour1:
  **** Μετακίνηση 1ης πλατφόρμας που συνορεύει με κενό χώρο προς το γειτονικό της κενό χώρο 
  **** αντιμετάθεση e με πλατφόρμα, π.χ. [3, ['P1', 'NO'], ['P2', 'NO'], ['E', 'NO'], ['P3', 'NO']] ---> [3, ['P1', 'NO'], ['E', 'NO'], ['P2', 'NO'], ['P3', 'NO']]
+ 
+ #### Moves the 1st platform adjacent to an empty space to the neighboring empty space
+ #### Swaps 'E' with a platform, e.g., [3, ['P1', 'NO'], ['P2', 'NO'], ['E', 'NO'], ['P3', 'NO']] ---> [3, ['P1', 'NO'], ['E', 'NO'], ['P2', 'NO'], ['P3', 'NO']]
 '''
 
 
@@ -114,6 +113,10 @@ def neighbour1(state):
  **** Τελεστής neighbour2:
  **** Μετακίνηση 2ης πλατφόρμας που συνορεύει με κενό χώρο προς τον γειτονικό της κενό χώρο
  **** αντιμετάθεση e με πλατφόρμα, π.χ. [3, ['P1', 'NO'], ['P2', 'NO'], ['E', 'NO'], ['P3', 'NO']] ---> [3, ['P1', 'NO'], ['P2', 'NO'], ['P3', 'NO'], ['E', 'NO']]
+ 
+ #### Moves the 2nd platform adjacent to an empty space to the neighboring empty space
+ #### Swaps 'E' with a platform, e.g., [3, ['P1', 'NO'], ['P2', 'NO'], ['E', 'NO'], ['P3', 'NO']] ---> [3, ['P1', 'NO'], ['P2', 'NO'], ['P3', 'NO'], ['E', 'NO']]
+
 '''
 
 
@@ -126,22 +129,9 @@ def neighbour2(state):
 
 
 '''
- **** Τελεστής neighbour3:
- **** Μετακίνηση 3ης πλατφόρμας που συνορεύει με κενό χώρο προς τον γειτονικό της κενό χώρο
- **** αντιμετάθεση e με πλατφόρμα, π.χ. [3, ['P1', 'NO'], ['P2', 'NO'], ['E', 'NO'], ['P3', 'NO']] ---> [3, ['P1', 'NO'], ['P2', 'NO'], ['P3', 'NO'], ['E', 'NO']]
-'''
+ **** Συνάρτηση εύρεσης απογόνων της τρέχουσας κατάστασης
+ #### Function to find children of the current state
 
-
-def neighbour3(state):
-    elem = ['E', 'NO']
-    i = state.index(elem) if elem in state else -1
-    if i >= 0 and len(spaces[i]) == 3:
-        swap(state, i, spaces[i][2])
-        return state
-
-
-'''
-Συνάρτηση εύρεσης απογόνων της τρέχουσας κατάστασης
 '''
 
 
@@ -157,17 +147,11 @@ def find_children(state):
     tr2_state = copy.deepcopy(state)
     tr2_child = neighbour2(tr2_state)
 
-    tr3_state = copy.deepcopy(state)
-    tr3_child = neighbour3(tr3_state)
-
     if tr1_child is not None:
         children.append(tr1_child)
 
     if tr2_child is not None:
         children.append(tr2_child)
-
-    if tr3_child is not None:
-        children.append(tr3_child)
 
     if enter_child is not None:
         children.append(enter_child)
@@ -178,6 +162,8 @@ def find_children(state):
 """ ----------------------------------------------------------------------------
 **** FRONT
 **** Διαχείριση Μετώπου
+
+# Managing the Front
 """
 
 """ ----------------------------------------------------------------------------
@@ -231,6 +217,8 @@ def expand_front(front,
 """ ----------------------------------------------------------------------------
 **** QUEUE
 **** Διαχείριση ουράς
+# Managing the Queue
+
 """
 
 """ ----------------------------------------------------------------------------
@@ -296,7 +284,6 @@ def extend_queue(queue,
 **** Βασική αναδρομική συνάρτηση για δημιουργία δέντρου αναζήτησης (αναδρομική επέκταση δέντρου)
 """
 
-
 def is_goal_state(front):
     if front[0] == 0:
         return 1
@@ -339,91 +326,74 @@ def find_solution(front, queue, closed, method):
 """
 
 
-# Συνάρτηση για ταξινόμηση του μετώπου
-# Η ταξινόμηση γίνεται με βάση την απόσταση κενής πλατφόρμας με κενό χώρο
 def sort_front(front):
     if front:
         temp_front = front
         distances = []
-        # Για κάθε κατάσταση μέσα στο μέτωπο
+
         for i in range(len(front)):
-            # Αρχικόποιηση τιμών
             platform_pos = -1
             empty_pos = 0
-            # Για κάθε λίστα κάθε κατάστασης
             for j in range(1, len(front[i])):
-                # Ελέγχουμε αν υπάρχει κενή πλατφόρμα και καταγράφουμε τη θέση της
-                if front[i][j][0] == 'P' and front[i][j][1] == 'NO' and platform_pos == -1:
-                    # Με το πηλίκο βρίσκουμε τη θέση οριζόντια και με το υπόλοιπο κάθετα
-                    platform_pos = j // 3 + j % 2
-                # break
-                # Καταγράφουμε τη θέση του κενού χώρου
+                if front[i][j][0][0] == 'P' and front[i][j][1] == 'NO' and platform_pos == -1:
+                    platform_pos = j % 2 + j // 2
+                    # break
                 if front[i][j][0] == 'E':
-                    # Με το πηλίκο βρίσκουμε τη θέση οριζόντια και με το υπόλοιπο κάθετα
-                    empty_pos = j // 3 + j % 2
+                    empty_pos = j // 2 + j % 2
 
             if platform_pos != -1:
-                # Υπολογίζουμε απόσταση
                 distance = abs(platform_pos - empty_pos)
             else:
-                # Αν δεν υπάρχει βάζουμε αρνητική τιμή
                 distance = -1
 
             distances.append(distance)
 
-        # Bubble sort για τις καταστάσεις του μετώπου
         for i in range(len(front)):
             for j in range(0, len(front) - i - 1):
                 if distances[j] > distances[j + 1]:
                     temp_front[j], temp_front[j + 1] = temp_front[j + 1], temp_front[j]
                     distances[j], distances[j + 1] = distances[j + 1], distances[j]
 
-        return temp_front  # επιστροφή ταξινομημένου μετώπου
+        return temp_front
     else:
         return front
 
-    # Συνάρτηση για ταξινόμηση της ουράς
 
-
-# Η ταξινόμηση γίνεται με βάση την απόσταση κενής πλατφόρμας με κενό χώρο όπως και στη sort_front
 def sort_queue(queue):
     if queue:
+        # temp_front = front
         distances = []
 
         for i in range(len(queue)):
 
             temp_queue = queue
-            # Παίρνουμε τη τελευταία κατάσταση για κάθε στοιχείο
+
             base = queue[i][-1]
-            # Αρχικόποιηση τιμών
+
             platform_pos = -1
             empty_pos = 0
-            # Για κάθε λίστα κάθε κατάστασης
+
             for j in range(1, len(base)):
-                # Ελέγχουμε αν υπάρχει κενή πλατφόρμα και καταγράφουμε τη θέση της
                 if base[j][0] == 'P' and base[j][1] == 'NO' and platform_pos == -1:
-                    # Με το πηλίκο βρίσκουμε τη θέση οριζόντια και με το υπόλοιπο κάθετα
-                    platform_pos = j // 3 + j % 2
-                # Καταγράφουμε τη θέση του κενού χώρου
+                    platform_pos = j % 2 + j // 2
+
                 if base[j][0] == 'E':
-                    empty_pos = j // 3 + j % 2
+                    empty_pos = j // 2 + j % 2
 
             if platform_pos != -1:
-                # Υπολογίζουμε απόσταση
                 distance = abs(platform_pos - empty_pos)
             else:
                 distance = -1
 
             distances.append(distance)
 
-        # Bubble sort για τις καταστάσεις του μετώπου
         for i in range(len(queue)):
             for j in range(0, len(queue) - i - 1):
                 if distances[j] > distances[j + 1]:
                     temp_queue[j], temp_queue[j + 1] = temp_queue[j + 1], temp_queue[j]
                     distances[j], distances[j + 1] = distances[j + 1], distances[j]
 
-        return temp_queue  # επιστροφή ταξινομημένης ουράς
+        return temp_queue
     else:
         return queue
 
@@ -435,8 +405,8 @@ def sort_queue(queue):
 
 
 def main():
-    initial_state = [5, ['E', 'NO'], ['P1', 'NO'], ['P2', 'NO'], ['P3', 'NO'], ['P4', 'NO'], ['P5', 'NO']]
-
+    initial_state = [3, ['E', 'NO'], ['P1', 'NO'], ['P2', 'NO'], ['P3', 'NO']]
+    # goal = [0, ['P1', 'YES'], ['P2', 'YES'], ['P3', 'YES'], ['E', 'NO']]
     method = 'BestFS'
 
     """ ----------------------------------------------------------------------------
@@ -444,11 +414,15 @@ def main():
     **** έναρξη αναζήτησης
     """
 
+    # dfs_search_recursive_front(initial_state, [], [['',''],['',''],['',''],['p','']], 'DFS')
     print('____BEGIN__SEARCHING____')
+    # find_solution(make_front(initial_state), [], goal, method)
 
     find_solution(make_front(initial_state), make_queue(initial_state), [], method)
 
     print("--- %s seconds ---" % (time.time() - start_time))
+
+    # find_solution(make_front(initial_state), [],  method)
 
 
 if __name__ == "__main__":
