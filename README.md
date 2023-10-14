@@ -14,9 +14,9 @@ The program simulates parking spaces and vehicles in a parking lot.
 * The search is performed on the parking problem, and the results are printed to the console. 
 
 There are three different versions of the solution provided.
-1. Four spaces
-2. Extended to six spaces
-3. Extended to nine spaces
+1. Four spaces  - ParkingFourSpaces.py
+2. Extended to six spaces - Extended_ParkingSixSpaces.py
+3. Extended to nine spaces - Extended_ParkingNineSpaces.py
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
