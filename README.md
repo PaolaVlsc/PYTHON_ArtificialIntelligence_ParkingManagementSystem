@@ -4,6 +4,8 @@ This code demonstrates a search algorithm using various search methods (DFS, BFS
 It explores different paths to find the optimal sequence of moves that allows cars to enter the parking lot efficiently.  
 The code times the execution and outputs the duration it takes to find the solution.
 
+A final project in Python for the subject "Artificial Intelligence" at University of West Attica 2020-21. 
+
 
 # ParkingFourSpaces
 
