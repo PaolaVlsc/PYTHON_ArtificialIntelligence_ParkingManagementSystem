@@ -1,16 +1,22 @@
 # PYTHON_ArtificialIntelligence_ParkingProblem
 AI search techniques using "Python".  
 This code demonstrates a search algorithm using various search methods (DFS, BFS, Best-First Search) to solve a parking problem. 
-It explores different paths to find the optimal sequence of moves that allows cars to enter the parking lot efficiently. 
-The code uses a recursive approach to create a search tree and tracks the states of the system until a solution is found. 
-The search is performed on the parking problem, and the results are printed to the console. 
+It explores different paths to find the optimal sequence of moves that allows cars to enter the parking lot efficiently.  
 The code times the execution and outputs the duration it takes to find the solution.
 
 
 # ParkingFourSpaces
 
 ## Description
-This is a Python program for solving a parking puzzle using various search methods such as DFS, BFS, and Best-First Search. The program simulates parking spaces and vehicles in a parking lot.
+The program simulates parking spaces and vehicles in a parking lot. 
+* It explores different paths to find the optimal sequence of moves that allows cars to enter the parking lot efficiently. 
+* The code uses a recursive approach to create a search tree and tracks the states of the system until a solution is found. 
+* The search is performed on the parking problem, and the results are printed to the console. 
+
+There are three different versions of the solution provided.
+1. Four spaces
+2. Extended to six spaces
+3. Extended to nine spaces
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
