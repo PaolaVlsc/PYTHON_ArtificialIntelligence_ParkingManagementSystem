@@ -55,4 +55,4 @@ This project was created by:
 - Micha Evagelia 
 
 ## Extras
-* Report paper in greek: [Report paper] (https://github.com/PaolaVlsc/PYTHON_ArtificialIntelligence_ParkingProblem/blob/master/extra/Final_Parking_cs161020_cs171102.pdf)
+* Report paper in greek: [Report paper](https://github.com/PaolaVlsc/PYTHON_ArtificialIntelligence_ParkingProblem/blob/master/extra/Final_Parking_cs161020_cs171102.pdf)
