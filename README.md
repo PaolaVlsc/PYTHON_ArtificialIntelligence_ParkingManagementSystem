@@ -5,7 +5,9 @@ It explores different paths to find the optimal sequence of moves that allows ca
 The code times the execution and outputs the duration it takes to find the solution.
 
 A final project in Python for the subject "Artificial Intelligence" at University of West Attica 2020-21. 
-
+<p align="center">
+<img src="https://github.com/PaolaVlsc/PYTHON_ArtificialIntelligence_ParkingProblem/assets/87998374/afc94a75-9ff9-4302-8939-d21cd9cbb0cc" alt="initial" width="20%">
+</p>
 
 # ParkingFourSpaces
 
