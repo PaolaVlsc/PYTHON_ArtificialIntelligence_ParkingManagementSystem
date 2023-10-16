@@ -6,8 +6,9 @@ The code times the execution and outputs the duration it takes to find the solut
 
 A final project in Python for the subject "Artificial Intelligence" at University of West Attica 2020-21. 
 <p align="center">
-<img src="https://github.com/PaolaVlsc/PYTHON_ArtificialIntelligence_ParkingProblem/assets/87998374/afc94a75-9ff9-4302-8939-d21cd9cbb0cc" alt="initial" width="20%">
+<img src="https://github.com/PaolaVlsc/PYTHON_ArtificialIntelligence_ParkingManagementSystem/assets/87998374/238d7403-3fd3-451d-a6ab-06ec644f63f5" alt="initial" width="20%">
 </p>
+
 
 # ParkingFourSpaces
 
